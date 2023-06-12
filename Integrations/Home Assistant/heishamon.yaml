@@ -24,6 +24,8 @@
 ## 1.4.0 (18-09-2022)
 ##   Added
 ##   - Split heatshift into separate Z1 and Z2
+## 1.5.0 (12-06-2023)
+##   Add cool mode selector
 
 # Automations #
 ###############
@@ -106,6 +108,8 @@ automation:
         option: >-
           {%- if trigger.payload == "0" -%}
             Heat
+          {%- if trigger.payload == "1" -%}
+            Cool  
           {%- elif trigger.payload == "3" -%}
             DHW
           {%- elif trigger.payload == "4" -%}
@@ -125,6 +129,8 @@ automation:
         payload_template: >-
           {%- if states('input_select.heishamon_heatmode') == "Heat" -%}
             0
+          {%- if states('input_select.heishamon_heatmode') == "Cool" -%}
+            1  
           {%- elif states('input_select.heishamon_heatmode') == "DHW" -%}
             3
           {%- elif states('input_select.heishamon_heatmode') == "Heat+DHW" -%}
@@ -251,6 +257,7 @@ input_select:
     options:
       - Heat+DHW
       - Heat
+      - Cool
       - DHW
 
 # sensor #
